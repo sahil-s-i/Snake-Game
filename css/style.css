@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Skranji&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -16,19 +18,22 @@
 
 #scoreBox {
     position: absolute;
-    top: 9px;
-    right: 200px;
-    font-size: 39px;
+    top: 2rem;
+    right: 9rem;
+    font-size: 2.6rem;
     font-weight: bold;
-
+    color: #e7e787;
+    font-family: 'Skranji', cursive;
 }
 
 #highscoreBox {
     position: absolute;
-    top: 57px;
-    right: 110px;
-    font-size: 39px;
+    top: 5.5rem;
+    right: 4rem;
+    font-size: 2.5rem;
     font-weight: bold;
+    color: #e7e787;
+    font-family: 'Skranji', cursive;
 }
 
 #board {
@@ -42,21 +47,17 @@
 }
 
 .head {
-    background: linear-gradient(rgb(190, 124, 124), rgb(179, 179, 135));
-    border: 2px solid purple;
-    transform: scale(1.02);
-    border-radius: 8px;
-
+    background: center / contain no-repeat url(/img/snake-head.png);
+    transform: scale(1.5);
 }
 
 .snake {
-    background-color: purple;
-    border: .25vmin solid white;
+    background-color: #952e68;
+    border: .25vmin solid #75485d;
     border-radius: 12px;
 }
 
 .food {
-    background: linear-gradient(rgb(63, 166, 214), rgb(104, 167, 219));
-    border: .25vmin solid black;
-    border-radius: 8px;
+    background: center / contain no-repeat url(/img/rat.png);
+    transform: scale(1.3);
 }
