@@ -1,3 +1,5 @@
+alert("Welcome to the Snake Game!\nPress Enter or Arrow keys to start the game.");
+
 // Game Constatns and Variables 
 let inputDir = { x: 0, y: 0 };
 let foodSound = new Audio('./music/food.mp3');
@@ -11,6 +13,8 @@ let snakeArr = [
     { x: 13, y: 15 }
 ]
 food = { x: 6, y: 7 };
+let isGameRunning = false;
+
 
 // Game Function 
 function main(ctime) {
@@ -31,11 +35,10 @@ function isCollide(snake) {
             return true;
         }
     }
-    if (snake[0].x >= 18 || snake[0].x <= 0 || snake[0].y >= 18 || snake[0].y <= 0) {
+    if (snake[0].x >= 18 || snake[0].x <= 1 || snake[0].y >= 18 || snake[0].y <= 1) {
         score = 0;
         return true;
     }
-
 }
 
 function gameEngine() {
@@ -45,9 +48,9 @@ function gameEngine() {
         musicSound.pause();
         inputDir = { x: 0, y: 0 };
         alert("Game Over . Press any key to Play Again ")
+        score = 0;
         snakeArr = [{ x: 13, y: 15 }];
         // musicSound.play();
-        score = 0;
     }
 
     // if u have eaten the food , increment the score and regenerate the food
@@ -61,9 +64,15 @@ function gameEngine() {
         }
         scoreBox.innerHTML = "Score : " + score;
         snakeArr.unshift({ x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y })
+        // Generate random food position until it's not inside the snake
         let a = 2;
         let b = 16;
-        food = { x: + Math.round(a + (b - a) * Math.random()), y: + Math.round(a + (b - a) * Math.random()) }
+        do {
+            food = {
+                x: +Math.round(a + (b - a) * Math.random()),
+                y: +Math.round(a + (b - a) * Math.random())
+            };
+        } while (snakeArr.some(segment => segment.x === food.x && segment.y === food.y));
     }
 
     // moving the snake
@@ -89,7 +98,6 @@ function gameEngine() {
         }
         board.appendChild(snakeElement);
     })
-
     // Display the food 
     foodElement = document.createElement('div');
     foodElement.style.gridRowStart = food.y;
@@ -113,27 +121,37 @@ else {
 
 window.requestAnimationFrame(main);
 window.addEventListener('keydown', e => {
-    inputDir = { x: 0, y: 1 } //Stat the game
-    moveSound.play();
-    // musicSound.play();
-    switch (e.key) {
-        case "ArrowUp":
-            inputDir.x = 0;
-            inputDir.y = -1;
-            break;
-        case "ArrowDown":
-            inputDir.x = 0;
-            inputDir.y = 1;
-            break;
-        case "ArrowLeft":
-            inputDir.x = -1;
-            inputDir.y = 0;
-            break;
-        case "ArrowRight":
-            inputDir.x = 1;
-            inputDir.y = 0;
-            break;
-        default:
-            break;
+    if (!isGameRunning) {
+        if (e.key === "ArrowUp" || e.key === "ArrowDown" || e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === "Enter") {
+            inputDir = { x: 0, y: -1 }; // Start the game
+            moveSound.play();
+            musicSound.play();
+            switch (e.key) {
+                case "ArrowUp":
+                    inputDir.x = 0;
+                    inputDir.y = -1;
+                    break;
+                case "ArrowDown":
+                    inputDir.x = 0;
+                    inputDir.y = 1;
+                    break;
+                case "ArrowLeft":
+                    inputDir.x = -1;
+                    inputDir.y = 0;
+                    break;
+                case "ArrowRight":
+                    inputDir.x = 1;
+                    inputDir.y = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 });
+
+// Add an event listener to stop the music when the window loses focus
+window.addEventListener('blur', () => {
+    musicSound.pause();
+});
+
