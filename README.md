@@ -4,6 +4,9 @@ Snake-Game is a simple yet entertaining rendition of the classic snake game, bui
 
 ### &nbsp; Visit site :arrow_upper_right: : &nbsp; [Click ME !!!](https://sahil-s-i.github.io/Snake-Game/)
 
+##### -> Please note that due to the static nature of GitHub Pages, it may not render images and other content correctly. To fully experience its awesomeness, it's recommended to copy the code to your desktop and check it out there.
+
+
 #### Key Features:
 
 - Simple and Fun Gameplay: Enjoy a classic Snake Game experience with intuitive controls.
