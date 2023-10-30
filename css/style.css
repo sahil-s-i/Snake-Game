@@ -47,7 +47,7 @@
 }
 
 .head {
-    background: center / contain no-repeat url(/img/snake-head.png);
+    background: center / contain no-repeat url(../img/snake-head.png);
     transform: scale(1.5);
 }
 
@@ -58,6 +58,6 @@
 }
 
 .food {
-    background: center / contain no-repeat url(/img/rat.png);
+    background: center / contain no-repeat url(../img/rat.png);
     transform: scale(1.3);
 }
